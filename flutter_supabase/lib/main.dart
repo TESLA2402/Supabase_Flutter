@@ -79,15 +79,15 @@ class _MainState extends State<Main> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              "News",
-              style: GoogleFonts.roboto(
+              "Top News Updates",
+              style: GoogleFonts.tinos(
                 textStyle: const TextStyle(
-                  color: Colors.blue,
+                  color: Colors.black,
                   fontSize: 26,
-                  //fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -104,8 +104,8 @@ class _MainState extends State<Main> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               icon: const Icon(
                 Icons.logout,
-                size: 40,
-                color: Colors.blue,
+                size: 26,
+                color: Colors.black,
               ))
         ],
         elevation: 0.0,
@@ -113,9 +113,6 @@ class _MainState extends State<Main> {
       extendBody: true,
       body: screens[index],
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        color: Colors.cyan,
-        buttonBackgroundColor: Colors.cyan,
         items: const <Widget>[
           Icon(
             Icons.home,
@@ -133,6 +130,11 @@ class _MainState extends State<Main> {
             color: Colors.white,
           ),
         ],
+        color: Colors.black,
+        buttonBackgroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 600),
         height: 50,
         onTap: (index) => setState(() => this.index = index),
       ),

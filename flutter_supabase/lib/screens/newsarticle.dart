@@ -21,6 +21,16 @@ class _ArticleState extends State<Article> {
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Colors.white,
+        leading: IconButton(
+            onPressed: () async {
+              Navigator.pop(context);
+            },
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            icon: const Icon(
+              Icons.arrow_back,
+              size: 26,
+              color: Colors.blue,
+            )),
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -44,7 +54,7 @@ class _ArticleState extends State<Article> {
                 size: 40,
               ))
         ],
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: Container(

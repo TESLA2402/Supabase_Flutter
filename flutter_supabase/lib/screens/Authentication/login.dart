@@ -50,13 +50,14 @@ class _SignInState extends State<SignIn> {
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 64, right: 24, left: 24),
+          padding:
+              const EdgeInsets.only(top: 64, right: 24, left: 24, bottom: 24),
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(width: 0, color: Color(0xFFFEC490)),
+                  border: Border.all(width: 0, color: const Color(0xFFFEC490)),
                   color: AppColors.signIn),
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -92,7 +93,7 @@ class _SignInState extends State<SignIn> {
                                   borderSide: const BorderSide(
                                       width: 0, color: Colors.white))),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(

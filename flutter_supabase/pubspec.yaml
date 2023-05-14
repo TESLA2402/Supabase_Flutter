@@ -42,6 +42,9 @@ dependencies:
   intl: ^0.17.0
   google_fonts: ^4.0.4
   curved_navigation_bar: ^1.0.1
+  stylish_bottom_bar: ^1.0.1
+  image_picker: ^0.8.7+5
+  flutter_easyloading: ^3.0.5
 
 dev_dependencies:
   flutter_test:
