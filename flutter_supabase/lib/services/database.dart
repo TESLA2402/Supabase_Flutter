@@ -1,4 +1,3 @@
-import 'package:flutter_supabase/constants/constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DatabaseMethods {

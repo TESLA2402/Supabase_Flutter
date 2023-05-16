@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_supabase/constants/colors.dart';
 import 'package:flutter_supabase/constants/constants.dart';
 import 'package:flutter_supabase/constants/typography.dart';
+import 'package:flutter_supabase/helper/authenticate.dart';
+import 'package:flutter_supabase/services/auth.dart';
 import 'package:flutter_supabase/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,7 +23,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   DatabaseMethods databaseMethods = DatabaseMethods();
   Future<void> _onUpload(String imageUrl) async {
     try {
-      final userId = supabase.auth.currentUser!.id;
       final userEmail = supabase.auth.currentUser!.email;
       await databaseMethods.updateUserInfo(userEmail!, imageUrl);
       if (mounted) {
@@ -59,7 +61,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     _getProfile();
     setState(() {});
-    //_avatarUrl = databaseMethods.getUserProfile(userEmail);
   }
 
   TextEditingController userNameTextEditingController = TextEditingController();
@@ -69,18 +70,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Avatar(
                 imageUrl: _avatarUrl,
                 onUpload: _onUpload,
               ),
               const SizedBox(
-                width: 16,
+                width: 20,
               ),
-              Text(
-                userNameTextEditingController.text.toUpperCase(),
-                style: GoogleFonts.tinos(
-                    fontWeight: FontWeight.w500, fontSize: 24),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    userNameTextEditingController.text.toUpperCase(),
+                    style: GoogleFonts.tinos(
+                        fontWeight: FontWeight.w500, fontSize: 24),
+                  ),
+                  Text(
+                    "Hey! there",
+                    style: GoogleFonts.tinos(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color: Colors.grey),
+                  ),
+                ],
               )
             ],
           ),
@@ -127,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: const Color(0xffF57C51),
+                  color: AppColors.button,
                 ),
                 child: Center(
                   child: Text("Update Username",
@@ -140,20 +154,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const Divider(
             color: Colors.grey,
           ),
-          Row(
-            children: [
-              const Icon(
-                Icons.logout,
-                color: Colors.red,
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              Text(
-                "Log out",
-                style: GoogleFonts.alata(color: Colors.red),
-              )
-            ],
+          const SizedBox(
+            height: 16,
+          ),
+          GestureDetector(
+            onTap: () async {
+              AuthService authService = AuthService();
+              await authService.signOut();
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => Authenticate()));
+            },
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.logout,
+                  color: Colors.red,
+                  size: 26,
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Text(
+                  "Log out",
+                  style: GoogleFonts.alata(color: Colors.red, fontSize: 22),
+                )
+              ],
+            ),
           )
         ],
       ),
@@ -184,14 +210,9 @@ class _AvatarState extends State<Avatar> {
       children: [
         Row(children: [
           if (widget.imageUrl == null || widget.imageUrl!.isEmpty)
-            Container(
-              width: 150,
-              height: 150,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100), color: Colors.grey),
-              child: const Center(
-                child: Text('No Image'),
-              ),
+            const CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.grey,
             )
           else
             CircleAvatar(
@@ -200,17 +221,15 @@ class _AvatarState extends State<Avatar> {
         GestureDetector(
           onTap: _isLoading ? null : _upload,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(16.0),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  //height: 60,
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xffF57C51),
-                  ),
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.button),
                   child: Center(
                     child: Text("Upload",
                         style: AppTypography.textMd.copyWith(

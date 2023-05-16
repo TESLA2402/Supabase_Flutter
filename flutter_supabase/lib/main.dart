@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_supabase/constants/colors.dart';
 import 'package:flutter_supabase/helper/authenticate.dart';
 import 'package:flutter_supabase/helper/shared_preferences.dart';
 import 'package:flutter_supabase/screens/categorylist.dart';
@@ -145,7 +146,7 @@ class _MainState extends State<Main> {
             color: Colors.white,
           ),
         ],
-        color: Colors.black,
+        color: AppColors.button,
         buttonBackgroundColor: Colors.black,
         backgroundColor: Colors.transparent,
         animationCurve: Curves.easeInOut,

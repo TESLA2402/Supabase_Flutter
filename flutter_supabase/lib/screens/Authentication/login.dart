@@ -57,8 +57,8 @@ class _SignInState extends State<SignIn> {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  border: Border.all(width: 0, color: const Color(0xFFFEC490)),
-                  color: AppColors.signIn),
+                  border: Border.all(width: 0, color: AppColors.buttonColor),
+                  color: Color.fromARGB(255, 211, 236, 247)),
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -139,9 +139,8 @@ class _SignInState extends State<SignIn> {
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: const Color(0xffF57C51),
-                        ),
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 108, 193, 233)),
                         child: Center(
                           child: Text("Log In",
                               style: AppTypography.textMd.copyWith(

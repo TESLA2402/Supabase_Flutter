@@ -71,8 +71,9 @@ class _SignUpState extends State<SignUp> {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(width: 0, color: Color(0xFFFEC490)),
-                      color: AppColors.signIn),
+                      border:
+                          Border.all(width: 0, color: AppColors.buttonColor),
+                      color: Color.fromARGB(255, 211, 236, 247)),
                   padding: const EdgeInsets.only(top: 50, left: 24, right: 24),
                   child: Form(
                     child: Column(
@@ -192,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                               height: 60,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: const Color(0xffF57C51),
+                                color: AppColors.button,
                               ),
                               child: Center(
                                 child: Text("Sign Up",

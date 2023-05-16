@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase/services/auth.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -14,8 +12,6 @@ class Article extends StatefulWidget {
 
 class _ArticleState extends State<Article> {
   WebViewController webViewController = WebViewController();
-  final Completer<WebViewController> _completer =
-      Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
