@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase/helper/authenticate.dart';
@@ -76,13 +78,26 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        flexibleSpace: ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              color: Colors.transparent,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.white.withAlpha(200),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              "Top News Updates",
+              index == 0
+                  ? "Top News Updates"
+                  : index == 1
+                      ? "Categories"
+                      : "Profile",
               style: GoogleFonts.tinos(
                 textStyle: const TextStyle(
                   color: Colors.black,
