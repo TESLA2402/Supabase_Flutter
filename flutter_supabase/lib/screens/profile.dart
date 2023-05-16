@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase/constants/constants.dart';
+import 'package:flutter_supabase/constants/typography.dart';
 import 'package:flutter_supabase/services/database.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -13,6 +15,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   String? _avatarUrl;
+  String? _userName;
+
   DatabaseMethods databaseMethods = DatabaseMethods();
   Future<void> _onUpload(String imageUrl) async {
     try {
@@ -45,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .single() as Map;
 
     _avatarUrl = (data['photo_url']) as String;
-    print(_avatarUrl);
+    _userName = (data['userName']) as String;
+    userNameTextEditingController = TextEditingController(text: _userName);
     setState(() {});
   }
 
@@ -57,9 +62,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //_avatarUrl = databaseMethods.getUserProfile(userEmail);
   }
 
+  TextEditingController userNameTextEditingController = TextEditingController();
   Widget build(BuildContext context) {
-    return Column(
-      children: [Avatar(imageUrl: _avatarUrl, onUpload: _onUpload)],
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Avatar(
+                imageUrl: _avatarUrl,
+                onUpload: _onUpload,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Text(
+                userNameTextEditingController.text.toUpperCase(),
+                style: GoogleFonts.tinos(
+                    fontWeight: FontWeight.w500, fontSize: 24),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 36,
+          ),
+          TextFormField(
+            validator: (val) {
+              return val!.isEmpty || val.length < 4
+                  ? "Username must contain more than 4 characters"
+                  : null;
+            },
+            //initialValue: _userName,
+            controller: userNameTextEditingController,
+            decoration: InputDecoration(
+                hintText: "Change Username",
+                fillColor: Colors.white,
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide:
+                        const BorderSide(width: 0, color: Colors.white)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                    borderSide:
+                        const BorderSide(width: 0, color: Colors.white))),
+          ),
+          const SizedBox(
+            height: 36,
+          ),
+          GestureDetector(
+            onTap: () async {
+              setState(() async {
+                final userEmail = supabase.auth.currentUser!.email;
+                await databaseMethods.updateUserName(
+                    userEmail!, userNameTextEditingController.text);
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(content: Text("Done")));
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: const Color(0xffF57C51),
+                ),
+                child: Center(
+                  child: Text("Update Username",
+                      style: AppTypography.textMd.copyWith(
+                          color: Colors.white, fontWeight: FontWeight.w700)),
+                ),
+              ),
+            ),
+          ),
+          const Divider(
+            color: Colors.grey,
+          ),
+          Row(
+            children: [
+              const Icon(
+                Icons.logout,
+                color: Colors.red,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Text(
+                "Log out",
+                style: GoogleFonts.alata(color: Colors.red),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }
@@ -70,7 +167,6 @@ class Avatar extends StatefulWidget {
     required this.imageUrl,
     required this.onUpload,
   });
-
   final String? imageUrl;
   final void Function(String) onUpload;
 
@@ -84,26 +180,48 @@ class _AvatarState extends State<Avatar> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.imageUrl == null || widget.imageUrl!.isEmpty)
-          Container(
-            width: 150,
-            height: 150,
-            color: Colors.grey,
-            child: const Center(
-              child: Text('No Image'),
+        Row(children: [
+          if (widget.imageUrl == null || widget.imageUrl!.isEmpty)
+            Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100), color: Colors.grey),
+              child: const Center(
+                child: Text('No Image'),
+              ),
+            )
+          else
+            CircleAvatar(
+                radius: 50, backgroundImage: NetworkImage(widget.imageUrl!)),
+        ]),
+        GestureDetector(
+          onTap: _isLoading ? null : _upload,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  //height: 60,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xffF57C51),
+                  ),
+                  child: Center(
+                    child: Text("Upload",
+                        style: AppTypography.textMd.copyWith(
+                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400)),
+                  ),
+                ),
+              ],
             ),
-          )
-        else
-          Image.network(
-            widget.imageUrl!,
-            width: 150,
-            height: 150,
-            fit: BoxFit.cover,
           ),
-        ElevatedButton(
-          onPressed: _isLoading ? null : _upload,
-          child: const Text('Upload'),
         ),
       ],
     );

@@ -9,12 +9,6 @@ class DatabaseMethods {
     });
   }
 
-  Future<void> addProfileInfo(userData) async {
-    supabase.from("ProfilePic").insert(userData).catchError((e) {
-      print(e.toString());
-    });
-  }
-
   getUserInfo(String email) async {
     return supabase
         .from("users")
@@ -29,6 +23,16 @@ class DatabaseMethods {
     return supabase
         .from("users")
         .update({'photo_url': photoUrl})
+        .eq("userEmail", email)
+        .catchError((e) {
+          print(e.toString());
+        });
+  }
+
+  updateUserName(String email, String userName) async {
+    return supabase
+        .from("users")
+        .update({'userName': userName})
         .eq("userEmail", email)
         .catchError((e) {
           print(e.toString());
