@@ -48,6 +48,12 @@ flutter build apk --release
 - Looking at the feasibility of the problem, most of the people use mobile apps over websites for news apps
 - We choose dart/flutter over Kotlin as it is cross platform language/framework, so our app can have same codebase but can run over both iOS as well as android
 
+## How to Contribute
+
+1. Clone repo and create a new branch: `$ git checkout https://github.com/TESLA2402/Supabase_Flutter -b name_for_new_branch`.
+2. Make changes and test
+3. Submit Pull Request with comprehensive description of changes
+
 # Drive Link
 Here is the [Drive link]()
 ```
