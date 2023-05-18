@@ -23,6 +23,7 @@ flutter build apk --release
 - Authentication 
 - Database 
 - Storage
+- Realtime  
 </ul>
 
 
@@ -39,6 +40,7 @@ flutter build apk --release
   - Upload profile pic
   - Update Username and Bio
   - Logout
+- Favourites 
 </ul>
 
 ## TechStack Used
