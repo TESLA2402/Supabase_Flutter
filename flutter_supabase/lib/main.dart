@@ -6,6 +6,7 @@ import 'package:flutter_supabase/constants/colors.dart';
 import 'package:flutter_supabase/helper/authenticate.dart';
 import 'package:flutter_supabase/helper/shared_preferences.dart';
 import 'package:flutter_supabase/screens/categorylist.dart';
+import 'package:flutter_supabase/screens/favourites.dart';
 import 'package:flutter_supabase/screens/home.dart';
 import 'package:flutter_supabase/screens/profile.dart';
 import 'package:flutter_supabase/services/auth.dart';
@@ -74,6 +75,7 @@ class _MainState extends State<Main> {
   final screens = [
     Home(),
     CategoryScreen(),
+    FavouriteArticles(),
     ProfileScreen(),
   ];
   @override
@@ -98,7 +100,9 @@ class _MainState extends State<Main> {
                   ? "Top News Updates"
                   : index == 1
                       ? "Categories"
-                      : "Profile",
+                      : index == 2
+                          ? "Favourites"
+                          : "Profile",
               style: GoogleFonts.tinos(
                 textStyle: const TextStyle(
                   color: Colors.black,
@@ -137,6 +141,11 @@ class _MainState extends State<Main> {
           ),
           Icon(
             Icons.list,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.favorite,
             size: 30,
             color: Colors.white,
           ),

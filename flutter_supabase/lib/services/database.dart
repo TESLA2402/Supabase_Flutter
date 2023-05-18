@@ -8,6 +8,12 @@ class DatabaseMethods {
     });
   }
 
+  Future<void> addFavouriteArticles(userData) async {
+    supabase.from("FavouriteArticles").insert(userData).catchError((e) {
+      print(e.toString());
+    });
+  }
+
   getUserInfo(String email) async {
     return supabase
         .from("users")

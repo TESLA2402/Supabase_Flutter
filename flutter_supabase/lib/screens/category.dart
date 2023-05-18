@@ -36,15 +36,23 @@ class _CategoryState extends State<CategoryNews> {
         //backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
+          children: <Widget>[
             Text(
-              "News",
-              style: TextStyle(
+              widget.category.toUpperCase(),
+              style: const TextStyle(
                 color: Colors.blue,
               ),
             ),
           ],
         ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.blue,
+            )),
         actions: <Widget>[
           Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),

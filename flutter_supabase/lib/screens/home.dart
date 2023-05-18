@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_supabase/constants/constants.dart';
+import 'package:flutter_supabase/services/auth.dart';
+import 'package:flutter_supabase/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_supabase/data/categorydata.dart';
@@ -138,7 +141,20 @@ class Category extends StatelessWidget {
   }
 }
 
-class ArticleTile extends StatelessWidget {
+// class ArticleTile extends StatefulWidget {
+//   const ArticleTile({super.key});
+
+//   @override
+//   State<ArticleTile> createState() => _ArticleTileState();
+// }
+
+// class _ArticleTileState extends State<ArticleTile> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }
+class ArticleTile extends StatefulWidget {
   final String imageURL, title, description, url;
   final DateTime publishedAt;
 
@@ -148,73 +164,108 @@ class ArticleTile extends StatelessWidget {
       required this.description,
       required this.url,
       required this.publishedAt});
-
   @override
+  State<ArticleTile> createState() => _ArticleTileState();
+}
+
+class _ArticleTileState extends State<ArticleTile> {
+  bool isLiked = false;
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Article(articleUrl: url)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Article(articleUrl: widget.url)));
       },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
+      child: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 16),
 
-        //color: Colors.blue,
-        child: Column(
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                imageURL,
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                title,
-                style: GoogleFonts.tinos(
-                    textStyle: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w700)),
-              ),
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                description,
-                maxLines: 2,
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: 14,
+            //color: Colors.blue,
+            child: Column(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    widget.imageURL,
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child:
-                  Text(DateFormat('yyyy-MM-dd   KK:mm aaa').format(publishedAt),
+                const SizedBox(
+                  height: 8,
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    widget.title,
+                    style: GoogleFonts.tinos(
+                        textStyle: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    widget.description,
+                    maxLines: 2,
+                    style: const TextStyle(
+                      color: Colors.black54,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                      DateFormat('yyyy-MM-dd   KK:mm aaa')
+                          .format(widget.publishedAt),
                       style: GoogleFonts.lato(
                         textStyle: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
                         ),
                       )),
+                ),
+                const Divider(
+                  height: 10,
+                  thickness: 1,
+                  color: Colors.black,
+                )
+              ],
             ),
-            const Divider(
-              height: 10,
-              thickness: 1,
-              color: Colors.black,
-            )
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                onPressed: () async {
+                  setState(() {
+                    isLiked = true;
+                  });
+                  DatabaseMethods database = DatabaseMethods();
+                  final userEmail = supabase.auth.currentUser!.email;
+                  Map<String, String> userDataMap = {
+                    "image_url": widget.imageURL,
+                    "url": widget.url,
+                    "title": widget.title,
+                    "description": widget.description,
+                    "userEmail": userEmail!,
+                  };
+                  await database.addFavouriteArticles(userDataMap);
+                },
+                icon: Icon(
+                  isLiked ? Icons.favorite : Icons.favorite_outline,
+                  size: 24,
+                  color: isLiked ? Colors.red : Colors.white,
+                )),
+          ),
+        ],
       ),
     );
   }
