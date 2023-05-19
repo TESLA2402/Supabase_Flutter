@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_supabase/constants/constants.dart';
-import 'package:flutter_supabase/screens/home.dart';
 import 'package:flutter_supabase/screens/newsarticle.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -22,7 +20,9 @@ class _FavouriteArticlesState extends State<FavouriteArticles> {
       child: StreamBuilder<List<Map<String, dynamic>>>(
           stream: supabase
               .from('FavouriteArticles')
-              .stream(primaryKey: ["id"]).eq('userEmail', userEmail),
+              .stream(primaryKey: ["id"])
+              .eq('userEmail', userEmail)
+              .order('created_at'),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               final contacts = snapshot.data!;
@@ -71,8 +71,6 @@ class FavouriteArticleTile extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
-
-        //color: Colors.blue,
         child: Column(
           children: <Widget>[
             ClipRRect(

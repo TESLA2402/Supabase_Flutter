@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase/constants/constants.dart';
-import 'package:flutter_supabase/services/auth.dart';
 import 'package:flutter_supabase/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -31,6 +30,12 @@ class _HomeState extends State<Home> {
     super.initState();
     categories = getCategories();
     getNews();
+  }
+
+  Future refresh() async {
+    setState(() {
+      getNews();
+    });
   }
 
   getNews() async {
@@ -70,19 +75,22 @@ class _HomeState extends State<Home> {
                     ),
                     Container(
                         padding: const EdgeInsets.only(top: 16),
-                        child: ListView.builder(
-                          itemCount: articles.length,
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return ArticleTile(
-                              imageURL: articles[index].urlToImage,
-                              title: articles[index].title,
-                              description: articles[index].description,
-                              url: articles[index].url,
-                              publishedAt: articles[index].publishedAt,
-                            );
-                          },
+                        child: RefreshIndicator(
+                          onRefresh: refresh,
+                          child: ListView.builder(
+                            itemCount: articles.length,
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return ArticleTile(
+                                imageURL: articles[index].urlToImage,
+                                title: articles[index].title,
+                                description: articles[index].description,
+                                url: articles[index].url,
+                                publishedAt: articles[index].publishedAt,
+                              );
+                            },
+                          ),
                         ))
                   ],
                 ),
@@ -141,19 +149,6 @@ class Category extends StatelessWidget {
   }
 }
 
-// class ArticleTile extends StatefulWidget {
-//   const ArticleTile({super.key});
-
-//   @override
-//   State<ArticleTile> createState() => _ArticleTileState();
-// }
-
-// class _ArticleTileState extends State<ArticleTile> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
 class ArticleTile extends StatefulWidget {
   final String imageURL, title, description, url;
   final DateTime publishedAt;
@@ -182,8 +177,6 @@ class _ArticleTileState extends State<ArticleTile> {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 16),
-
-            //color: Colors.blue,
             child: Column(
               children: <Widget>[
                 ClipRRect(

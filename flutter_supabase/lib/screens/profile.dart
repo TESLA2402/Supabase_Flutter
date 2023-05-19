@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase/constants/colors.dart';
 import 'package:flutter_supabase/constants/constants.dart';
@@ -116,11 +118,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
                     borderSide:
-                        const BorderSide(width: 0, color: Colors.white)),
+                        const BorderSide(width: 1, color: AppColors.button)),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
                     borderSide:
-                        const BorderSide(width: 0, color: Colors.white))),
+                        const BorderSide(width: 0, color: AppColors.button))),
           ),
           const SizedBox(
             height: 36,
