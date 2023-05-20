@@ -45,6 +45,7 @@ dependencies:
   stylish_bottom_bar: ^1.0.1
   image_picker: ^0.8.7+5
   flutter_easyloading: ^3.0.5
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
