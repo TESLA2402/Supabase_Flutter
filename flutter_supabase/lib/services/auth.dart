@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter_supabase/constants/constants.dart';
 import 'package:flutter_supabase/helper/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

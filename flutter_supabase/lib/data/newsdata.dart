@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter_supabase/models/article_model.dart';
-import 'package:flutter_supabase/screens/newsarticle.dart';
 import 'package:http/http.dart' as http;
 
 class News {
