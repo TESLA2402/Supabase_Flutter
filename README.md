@@ -2,7 +2,7 @@
 
 
 ## How to run
-- Install the .apk file uploaded in the drive link submitter or from the release section and run on an android device
+- Install the .apk file from the release section and run on an android/ios device
 - Alternatively, you can build your own release by cloning the github repo, and running 
 ```
 flutter build apk --release
