@@ -34,7 +34,7 @@ flutter build apk --release
 - Home Page
   - News Articles
   - Logout
-  - Bottom Navigation bar {Home, Categories, Profile}
+  - Bottom Navigation bar {Home, Categories, Favourites, Profile}
 - News Categories
 - Profile
   - Upload profile pic
