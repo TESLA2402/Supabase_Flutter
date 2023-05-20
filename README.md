@@ -9,7 +9,7 @@ flutter build apk --release
 ```
 - Make sure you have Flutter SDK and Android Studio installed
 
-## Usage of Supabase
+## Why Supabase?
 
 #### <ul>
 - Open-source 
@@ -17,7 +17,7 @@ flutter build apk --release
 - Customization and flexibility : Since it's built on open-source technologies, developers can modify and enhance the platform to suit their specific needs
 </ul>
 
-## Why Supabase?
+## Usage of Supabase
 
 #### <ul>
 - Authentication 
