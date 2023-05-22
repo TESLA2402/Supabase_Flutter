@@ -2,14 +2,14 @@
 
 
 ## How to run
-- Install the .apk file uploaded in the drive link submitter or from the release section and run on an android device
+- Install the .apk file from the release section and run on an android/ios device
 - Alternatively, you can build your own release by cloning the github repo, and running 
 ```
 flutter build apk --release
 ```
 - Make sure you have Flutter SDK and Android Studio installed
 
-## Usage of Supabase
+## Why Supabase?
 
 #### <ul>
 - Open-source 
@@ -17,7 +17,7 @@ flutter build apk --release
 - Customization and flexibility : Since it's built on open-source technologies, developers can modify and enhance the platform to suit their specific needs
 </ul>
 
-## Why Supabase?
+## Usage of Supabase
 
 #### <ul>
 - Authentication 
@@ -34,7 +34,7 @@ flutter build apk --release
 - Home Page
   - News Articles
   - Logout
-  - Bottom Navigation bar {Home, Categories, Profile}
+  - Bottom Navigation bar {Home, Categories, Favourites, Profile}
 - News Categories
 - Profile
   - Upload profile pic
@@ -57,7 +57,7 @@ flutter build apk --release
 3. Submit Pull Request with comprehensive description of changes
 
 # Drive Link
-Here is the [Drive link]()
+Here is the [Drive link](https://drive.google.com/drive/folders/197NKv3IGADZ1UEwlqZ12xmIngANI0ijD?usp=sharing)
 ```
 Submitted by:
               Lakshay
