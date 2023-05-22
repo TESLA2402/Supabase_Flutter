@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         home: //Authenticate()
-            userIsLoggedIn == true ? Main() : Authenticate());
+            userIsLoggedIn == true ? const Main() : Authenticate());
   }
 }
 
@@ -72,7 +72,7 @@ class Main extends StatefulWidget {
 
 class _MainState extends State<Main> {
   int index = 0;
-  final screens = [
+  final screens = const [
     Home(),
     CategoryScreen(),
     FavouriteArticles(),
