@@ -9,15 +9,11 @@ on:
   
   workflow_dispatch:
 
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
-
 jobs:
   
   build:
     name: Create Android Build
+    permissions: write-all
     runs-on: ubuntu-latest
     defaults:
       run:
