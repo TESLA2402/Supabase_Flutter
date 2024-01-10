@@ -38,8 +38,12 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Start release build
         run: flutter build apk --no-tree-shake-icons --debug
+        
+      - name: Start release build for different cpu architectures
+        run: flutter build apk --split-per-abi --no-tree-shake-icons --debug
+
       - name: Create Release
         uses: ncipollo/release-action@v1.13.0
         with:
-          artifacts: "flutter_supabase/build/app/outputs/flutter-apk/app-debug.apk"
+          artifacts: "flutter_supabase/build/app/outputs/flutter-apk/*.apk"
           tag: v1.0.${{ github.run_number }}
