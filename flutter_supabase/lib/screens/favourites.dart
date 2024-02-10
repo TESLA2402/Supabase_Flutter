@@ -21,7 +21,7 @@ class _FavouriteArticlesState extends State<FavouriteArticles> {
           stream: supabase
               .from('FavouriteArticles')
               .stream(primaryKey: ["id"])
-              .eq('userEmail', userEmail)
+              .eq('userEmail', userEmail as Object)
               .order('created_at'),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {

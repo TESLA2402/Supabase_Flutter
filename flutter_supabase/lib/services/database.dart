@@ -45,7 +45,10 @@ class DatabaseMethods {
   }
 
   Future<Map> getUserProfile(String? email) async {
-    return await supabase.from("users").select().eq("userEmail", email).single()
-        as Map;
+    return await supabase
+        .from("users")
+        .select()
+        .eq("userEmail", email as Object)
+        .single() as Map;
   }
 }

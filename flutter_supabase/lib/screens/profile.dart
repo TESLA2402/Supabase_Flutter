@@ -49,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final data = await supabase
         .from('users')
         .select()
-        .eq('userEmail', userEmail)
+        .eq('userEmail', userEmail as Object)
         .single() as Map;
 
     _avatarUrl = (data['photo_url']) as String;
