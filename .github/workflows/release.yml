@@ -43,7 +43,7 @@ jobs:
         run: flutter build apk --split-per-abi --no-tree-shake-icons --debug
 
       - name: Create Release
-        uses: ncipollo/release-action@v1.13.0
+        uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: "flutter_supabase/build/app/outputs/flutter-apk/*.apk"
           tag: v1.0.${{ github.run_number }}
