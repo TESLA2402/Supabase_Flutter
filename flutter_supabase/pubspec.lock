@@ -228,10 +228,10 @@ packages:
     dependency: transitive
     description:
       name: gotrue
-      sha256: "1bf6354278a98b8a1867263e94921da8a239de07e9babceab2b4e80af651a098"
+      sha256: a0eee21a7e8ec09e6bbd5c9a36e31e423827b575ba6fc2dd049805dcfaac5b02
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.1"
+    version: "2.6.0"
   gtk:
     dependency: transitive
     description:
@@ -508,10 +508,10 @@ packages:
     dependency: transitive
     description:
       name: realtime_client
-      sha256: efb053dd11e2b3cfcc1aa11b3a41842f109d582adccb244a56ed58acf2f6b9f5
+      sha256: bb6747fe2feff7f8349d563ac9d4a8f10ac2dd809bdff1e7e319321d5ea16b49
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   retry:
     dependency: transitive
     description:
@@ -649,18 +649,18 @@ packages:
     dependency: transitive
     description:
       name: supabase
-      sha256: b4bde1a8c4ebbc7bbad929f4a884f277343351bcc795a9b1e9e6a0a4148ad1fb
+      sha256: "2ddedf13f6dc013084569673dff7a7d540f5eacdd5b36fede8d58322e5d79c55"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.9"
+    version: "2.1.0"
   supabase_flutter:
     dependency: "direct main"
     description:
       name: supabase_flutter
-      sha256: c425b1f7c1915a4208e9fcf85bfc10e60af0db5149a5cf4b33b7f4003c3a9a4b
+      sha256: "2d9683a15098258de137cb9182e695fa2a1a0f366c7409c2a6e6d47bc5a42be3"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "2.5.0"
   synchronized:
     dependency: transitive
     description:
