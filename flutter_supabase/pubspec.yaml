@@ -42,7 +42,7 @@ dependencies:
   intl: ^0.19.0
   google_fonts: ^6.2.1
   curved_navigation_bar: ^1.0.1
-  image_picker: ^1.0.7
+  image_picker: ^1.0.8
   animated_text_kit: ^4.2.2
 
 dev_dependencies:
