@@ -212,10 +212,10 @@ packages:
     dependency: transitive
     description:
       name: functions_client
-      sha256: "48659e5c6a4bbe02659102bf6406a0cf39142202deae65aacfa78688f2e68946"
+      sha256: "229648c4c78e0cb13dfb5e7508a3d2e7058f126ba364b94f8199ba4cead96d4e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.1"
   google_fonts:
     dependency: "direct main"
     description:
@@ -492,10 +492,10 @@ packages:
     dependency: transitive
     description:
       name: postgrest
-      sha256: f1f78470a74c611811132ff12acdef9c08b3ec65b61e88161a057d6cc5fbbd83
+      sha256: "675540a5e93e89fc28cc4ef0999ed2916c00a1c73de73f3a0d5067ce36dd41a2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   process:
     dependency: transitive
     description:
@@ -649,18 +649,18 @@ packages:
     dependency: transitive
     description:
       name: supabase
-      sha256: "7d2ca0499a6933b9aed2f4ff9eff4cbc4107f54006be35c42c8e1db70e99438e"
+      sha256: f6d21d0b555aa997d8170afd112407df0aaf44820cbe93b3520e2f7ea3ec0904
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.4"
+    version: "2.2.7"
   supabase_flutter:
     dependency: "direct main"
     description:
       name: supabase_flutter
-      sha256: "048d9377a76e43b95039d67e26b4bb2326fc8818df8d2f4bd63b4fdfc79f8f50"
+      sha256: bcac7745e423ffe4aea86fefc3ccef259f979005c7a40558089c11f8606fd085
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.8"
+    version: "2.5.11"
   synchronized:
     dependency: transitive
     description:
@@ -849,10 +849,10 @@ packages:
     dependency: transitive
     description:
       name: yet_another_json_isolate
-      sha256: e727502a2640d65b4b8a8a6cb48af9dd0cbe644ba4b3ee667c7f4afa0c1d6069
+      sha256: "381dd593e4199fe41a7b6467cef77a41d91fa8ef41465e135f12c99a76be463b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
 sdks:
   dart: ">=3.2.3 <4.0.0"
   flutter: ">=3.16.6"
