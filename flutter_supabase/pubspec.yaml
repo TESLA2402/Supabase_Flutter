@@ -43,7 +43,7 @@ dependencies:
   google_fonts: ^6.3.2
   curved_navigation_bar: ^1.0.6
   image_picker: ^1.2.0
-  animated_text_kit: ^4.2.3
+  animated_text_kit: ^4.3.0
 
 dev_dependencies:
   flutter_test:
