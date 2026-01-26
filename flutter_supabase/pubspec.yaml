@@ -40,7 +40,7 @@ dependencies:
   cached_network_image: ^3.4.1
   webview_flutter: ^4.13.1
   intl: ^0.20.2
-  google_fonts: ^7.0.2
+  google_fonts: ^8.0.0
   curved_navigation_bar: ^1.0.6
   image_picker: ^1.2.1
   animated_text_kit: ^4.3.0
