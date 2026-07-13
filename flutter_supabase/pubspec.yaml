@@ -38,7 +38,7 @@ dependencies:
   supabase_flutter: ^2.16.0
   http: ^1.6.0
   cached_network_image: ^3.4.1
-  webview_flutter: ^4.14.0
+  webview_flutter: ^4.14.1
   intl: ^0.20.3
   google_fonts: ^8.1.0
   curved_navigation_bar: ^1.0.6
