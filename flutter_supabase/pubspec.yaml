@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.9
   supabase_flutter: ^2.18.0
   http: ^1.6.0
-  cached_network_image: ^4.0.2
+  cached_network_image: ^4.0.4
   webview_flutter: ^4.14.1
   intl: ^0.20.3
   google_fonts: ^9.0.0
